@@ -1,0 +1,21 @@
+<div class="todo-item">
+    <div class="d-flex w-100 flex-column" [ngClass]="{'complete' : item?.isCompleted}">
+        <div class="mb-1">
+            <div class="checker">
+                <span><input type="checkbox" [checked]="item?.isCompleted" (change)="toggleComplete()"></span>
+            </div>
+            <span class="ml-2">{{item?.title}}</span>
+        </div>
+        <div class="ml-4 text-info small">
+            {{item?.date | formatDate}}
+        </div>
+    </div>
+    <div class="d-flex align-items-center">
+        <span (click)="onSelect()" class="edit-todo-item">
+            <img src="assets/edit.svg" />
+        </span>
+        <span (click)="remove()" class="ml-3 remove-todo-item">
+            <img src="assets/delete.svg" />
+        </span>
+    </div>
+</div>

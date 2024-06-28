@@ -1,0 +1,29 @@
+<form [formGroup]="todoForm" novalidate>
+    <div class="row">
+        <div class="col-md-7">
+            <input formControlName="title" type="text" class="form-control add-task" placeholder="New Task...">
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <div class="input-group">
+                    <input class="form-control" [minDate]="minDate" placeholder="yyyy-mm-dd" name="dp" formControlName="date" ngbDatepicker
+                        #d="ngbDatepicker">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <ng-container *ngIf="!isEditMode">
+                <button type="button" (click)="onSaveNew()" [disabled]="todoForm.invalid" class="btn btn-primary btn-block">{{actionBtnText}}</button>
+            </ng-container>
+            <ng-container *ngIf="isEditMode">
+                <div class="d-flex justify-content-center">
+                    <button type="button" (click)="onSaveEdit()" [disabled]="todoForm.invalid" class="btn btn-primary">{{actionBtnText}}</button>
+                    <button type="button" (click)="onCancel()" class="ml-2 btn btn-outline-secondary">Cancel</button>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</form>
